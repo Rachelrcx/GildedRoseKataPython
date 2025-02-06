@@ -38,9 +38,8 @@ class GildedRoseTest(unittest.TestCase):
     def test_gilded_rose_get_all_items(self):
         items = [Item("Normal Item", 5, 10)]
         gilded_rose = GildedRose(items)
-        
-        with self.assertRaises(AttributeError):
-            gilded_rose.get_all_the_items()
+        all_items = gilded_rose.get_all_the_item()
+        self.assertEqual(["Sulfuras"], all_items)
 
 
 if __name__ == '__main__':
