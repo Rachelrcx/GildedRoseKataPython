@@ -40,7 +40,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         
         with self.assertRaises(AttributeError):
-            gilded_rose.get_all_items()
+            gilded_rose.get_all_the_items()
 
 
 if __name__ == '__main__':
