@@ -22,6 +22,41 @@ class GildedRoseTest(unittest.TestCase):
         all_items = gilded_rose.get_item()
         self.assertEqual(["Sulfuras"], all_items)
 
+    # New Test 1: Normal item quality decreases by 1 each day
+    def test_normal_item_quality_decreases(self):
+        items = [Item("Normal Item", 10, 20)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        self.assertEqual(19, items[0].quality, "Quality should decrease by 1 each day")
+
+    # New Test 2: Quality decreases twice as fast after sell date passes
+    def test_quality_decreases_twice_as_fast_after_sellin(self):
+        items = [Item("Normal Item", 0, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        self.assertEqual(8, items[0].quality, "Quality should decrease by 2 after sell-by date")
+
+    # New Test 3: "Aged Brie" increases in quality over time
+    def test_aged_brie_increases_in_quality(self):
+        items = [Item("Aged Brie", 5, 10)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        self.assertEqual(11, items[0].quality, "Aged Brie should increase in quality")
+
+    # New Test 4: "Backstage passes" drop to 0 after the concert
+    def test_backstage_passes_quality_drops_to_zero(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 30)]
+        gilded_rose = GildedRose(items)
+
+        gilded_rose.update_quality()
+
+        self.assertEqual(0, items[0].quality, "Backstage passes should drop to 0 after the concert")
 
 
 if __name__ == '__main__':
