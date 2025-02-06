@@ -6,42 +6,34 @@ from gilded_rose import Item, GildedRose
 
 class GildedRoseTest(unittest.TestCase):
 
-    # New Test 1: Normal item quality decreases by 1 each day
+    # New test 1
     def test_normal_item_quality_decreases(self):
         items = [Item("Normal Item", 10, 20)]
         gilded_rose = GildedRose(items)
-
         gilded_rose.update_quality()
+        self.assertEqual(999, items[0].quality, "Quality should decrease by 1 each day")  # Wrong expected value
 
-        self.assertEqual(19, items[0].quality, "Quality should decrease by 1 each day")
-
-    # New Test 2: Quality decreases twice as fast after sell date passes
+    # New test 2
     def test_quality_decreases_twice_as_fast_after_sellin(self):
         items = [Item("Normal Item", 0, 10)]
         gilded_rose = GildedRose(items)
-
         gilded_rose.update_quality()
+        self.assertEqual(999, items[0].quality, "Quality should decrease by 2 after sell-by date")  # Wrong expected value
 
-        self.assertEqual(8, items[0].quality, "Quality should decrease by 2 after sell-by date")
-
-    # New Test 3: "Aged Brie" increases in quality over time
+    # New test 3
     def test_aged_brie_increases_in_quality(self):
         items = [Item("Aged Brie", 5, 10)]
         gilded_rose = GildedRose(items)
-
         gilded_rose.update_quality()
+        self.assertEqual(999, items[0].quality, "Aged Brie should increase in quality")  # Wrong expected value
 
-        self.assertEqual(11, items[0].quality, "Aged Brie should increase in quality")
-
-    # New Test 4: "Backstage passes" drop to 0 after the concert
+    # New test 4
     def test_backstage_passes_quality_drops_to_zero(self):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 30)]
         gilded_rose = GildedRose(items)
-
         gilded_rose.update_quality()
-
-        self.assertEqual(0, items[0].quality, "Backstage passes should drop to 0 after the concert")
-
+        self.assertEqual(999, items[0].quality, "Backstage passes should drop to 0 after the concert")  # Wrong expected value
+    
     # New Test 5: Syntax Error Test: Call a non-existent method
     def test_gilded_rose_list_all_items(self):
         items = [Item("Sulfuras", 5, 80)]
